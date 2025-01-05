@@ -1,0 +1,28 @@
+/* Reset Default Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+  
+  /* Game Container */
+  #gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0; /* Fallback background */
+  }
+  
+  /* Canvas Styling */
+  #gameCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    background-color: #ffffff; /* Fallback background for canvas */
+    border: 2px solid #333; /* Optional border */
+  }
+  
