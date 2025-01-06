@@ -364,7 +364,7 @@ function gameLoop() {
   }
   
   // Event Listeners
-  canvas.addEventListener('mousedown', (event) => {
+  canvas.addEventListener(['mousedown','touchstart'], (event) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
