@@ -23,7 +23,6 @@ let dino = {
 };
 let obstacles = [];
 let score = 0;
-let highScore = 0; // Session-based high score
 let gameRunning = false;
 let showStartButton = true;
 let showRestartButton = false;
@@ -36,6 +35,9 @@ let jumpSpeed = jumpHeight; // Speed of jump scaling
 let movementSpeed = 5;
 let obstacleSpawnSpeed = 2000; // in ms (time between spawns)
 let obstacleSpeed = 5;
+
+// High Score Persistence (using sessionStorage)
+let highScore = sessionStorage.getItem('highScore') ? Number(sessionStorage.getItem('highScore')) : 0;
 
 // Button Areas
 let startButton = {};
@@ -131,6 +133,12 @@ function resizeCanvas() {
   dino.width = dino.height = BASE_SPRITE_SIZE * scaleFactor;
   dino.x = canvas.width / 2 - dino.width / 2;
   dino.y = canvas.height - dino.height - 30 * scaleFactor;
+
+  // Update Obstacle Sizes
+  obstacles.forEach((obstacle) => {
+    obstacle.width = BASE_SPRITE_SIZE * scaleFactor;
+    obstacle.height = BASE_SPRITE_SIZE * scaleFactor;
+  });
 
   // Update Button Areas
   const buttonWidth = 60 * scaleFactor; // Larger button size for Left and Right
@@ -281,7 +289,10 @@ function gameLoop() {
     playAudio(bgMusic); // Play background music
     gameRunning = true;
     showStartButton = false;
-    spawnObstacle(); // Start spawning obstacles
+  
+    // Delay obstacle spawn by 2 seconds
+    setTimeout(() => spawnObstacle(), 2000); 
+  
     gameLoop(); // Start the game loop
   }
   
@@ -298,6 +309,7 @@ function gameLoop() {
     // Update high score if the current score is greater
     if (score > highScore) {
       highScore = score;
+      sessionStorage.setItem('highScore', highScore); // Save high score in sessionStorage
     }
   
     // Redraw the scene to display the game-over screen
@@ -306,11 +318,12 @@ function gameLoop() {
   
   // Obstacle Spawning
   function spawnObstacle() {
+    const scaleFactor = canvas.width / BASE_WIDTH; // Ensure obstacle resizing works dynamically
     const obstacle = {
       x: canvas.width,
-      y: canvas.height - BASE_SPRITE_SIZE - 30,
-      width: BASE_SPRITE_SIZE,
-      height: BASE_SPRITE_SIZE,
+      y: canvas.height - BASE_SPRITE_SIZE * scaleFactor - 30,
+      width: BASE_SPRITE_SIZE * scaleFactor,
+      height: BASE_SPRITE_SIZE * scaleFactor,
       speed: obstacleSpeed * baseGameSpeed,
     };
     obstacles.push(obstacle);
@@ -340,7 +353,7 @@ function gameLoop() {
         ctx.drawImage(continueButtonImage, continueButton.x, continueButton.y, continueButton.width, continueButton.height);
       } else {
         ctx.fillStyle = '#007bff';
-        // ctx.fillRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
+        ctx.fillRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
         ctx.fillStyle = '#fff';
         ctx.textAlign = 'center';
         ctx.fillText('▶️', continueButton.x + continueButton.width / 2, continueButton.y + continueButton.height / 2);
