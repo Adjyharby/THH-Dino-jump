@@ -8,15 +8,15 @@ const BASE_HEIGHT = 360;
 const BASE_SPRITE_SIZE = 64;
 
 // Gravity and Jump Physics
-const gravity = 1;
-const jumpHeight = -Math.sqrt(2 * gravity * BASE_HEIGHT * 0.4);
+const gravity = 0.5;
+const jumpHeight = -Math.sqrt(2 * gravity * BASE_HEIGHT * 0.7);
 
 // Game Variables
 let dino = {
   x: BASE_WIDTH / 2 - BASE_SPRITE_SIZE / 2,
   y: BASE_HEIGHT - BASE_SPRITE_SIZE - 30,
-  width: BASE_SPRITE_SIZE,
-  height: BASE_SPRITE_SIZE,
+  width: BASE_SPRITE_SIZE ,
+  height: BASE_SPRITE_SIZE ,
   dx: 0,
   dy: 0,
   jumping: false,
@@ -146,8 +146,8 @@ function resizeCanvas() {
 
   startButton = { x: canvas.width / 2 - buttonWidth / 2, y: canvas.height / 2 - buttonHeight, width: buttonWidth, height: buttonHeight };
   restartButton = { x: canvas.width / 2 - buttonWidth / 2, y: canvas.height / 2 + buttonHeight + 20, width: buttonWidth, height: buttonHeight };
-  leftButtonArea = { x: 20, y: canvas.height / 2 - buttonHeight / 2, width: buttonWidth, height: buttonHeight }; // Middle left
-  rightButtonArea = { x: canvas.width - buttonWidth - 20, y: canvas.height / 2 - buttonHeight / 2, width: buttonWidth, height: buttonHeight }; // Middle right
+  leftButtonArea = { x: 30, y: canvas.height / 2 - buttonHeight / 2, width: buttonWidth *1.15, height: buttonHeight *1.15 }; // Middle left
+  rightButtonArea = { x: canvas.width - buttonWidth - 39, y: canvas.height / 2 - buttonHeight  / 2, width: buttonWidth *1.15, height: buttonHeight *1.15 }; // Middle right
   pauseButtonArea = { x: canvas.width - 60, y: 20, width: 40, height: 40 };
   continueButton = { x: canvas.width / 2 - buttonWidth / 2, y: canvas.height / 2 + buttonHeight, width: buttonWidth, height: buttonHeight };
 
