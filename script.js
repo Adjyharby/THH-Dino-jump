@@ -8,8 +8,8 @@ const BASE_HEIGHT = 360;
 const BASE_SPRITE_SIZE = 64;
 
 // Gravity and Jump Physics
-const gravity = 0.5;
-const jumpHeight = -Math.sqrt(2 * gravity * BASE_HEIGHT * 0.7);
+const gravity = .20;
+const jumpHeight = -Math.sqrt(2 * gravity * BASE_HEIGHT * .4);
 
 // Game Variables
 let dino = {
@@ -364,7 +364,7 @@ function gameLoop() {
   }
   
   // Event Listeners
-  canvas.addEventListener(['mousedown','touchstart'], (event) => {
+  canvas.addEventListener('mousedown', (event) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
