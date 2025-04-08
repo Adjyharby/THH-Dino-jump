@@ -48,8 +48,8 @@ let pauseButtonArea = {};
 let continueButton = {};
 
 // Load Assets with Fallbacks
-let dinoSprite = loadImage('./dino.gif');
-let enemySprite = loadImage('./enemy.gif');
+let dinoSprite = loadImage('./dino.png');
+let enemySprite = loadImage('./enemy.png');
 let backgroundSprite = loadImage('./background.png');
 let groundSprite = loadImage('./ground.png');
 let startPageCharacter = loadImage('./start_character.png');
@@ -450,4 +450,3 @@ function gameLoop() {
   // Resize the Canvas
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
-  
